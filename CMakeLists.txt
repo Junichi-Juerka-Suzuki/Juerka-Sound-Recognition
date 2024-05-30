@@ -13,3 +13,4 @@ project ("Juerka-Sound-Recognition")
 
 # サブプロジェクトを含めます。
 add_subdirectory ("Juerka-Sound-Recognition")
+add_subdirectory ("Juerka")
