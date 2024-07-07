@@ -56,18 +56,27 @@ namespace Juerka::SoundRecognition
 			copy(&data_store[start_index], &data_store[end_sentinel], back_inserter(out));
 		}
 
-		bool load_sound_file(string&& filename)
+		bool load_sound_file(string&& filename, size_t data_series_size)
 		{
 			ifstream ifs(filename);
 			sound_t sound;
 
 			bool is_sound_loaded(false);
+			size_t counter(0);
 
 			while (ifs >> sound)
 			{
 				data_store.emplace_back(sound);
 				is_sound_loaded = true;
+				counter += 1;
+
+				if (counter >= data_series_size)
+				{
+					break;
+				}
 			}
+
+			data_store.emplace_back(0); // dummy
 
 			return is_sound_loaded;
 		}

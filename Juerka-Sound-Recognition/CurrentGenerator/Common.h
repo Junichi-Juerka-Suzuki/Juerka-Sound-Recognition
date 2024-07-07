@@ -4,5 +4,5 @@ namespace Juerka::SoundRecognition
 {
 	using sound_t = double;
 
-	inline constexpr static double DEFAULT_MULTIPLYING_FACTOR = 10.0;
+	inline constexpr static double DEFAULT_MULTIPLYING_FACTOR = 20.0;
 }

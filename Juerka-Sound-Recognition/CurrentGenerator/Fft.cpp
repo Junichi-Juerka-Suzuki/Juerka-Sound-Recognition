@@ -16,7 +16,6 @@ namespace Juerka::SoundRecognition
         vector<complex<double>>& out
     )
     {
-        out.clear();
         out.reserve(in.size());
 
         DFTI_DESCRIPTOR_HANDLE descriptor;

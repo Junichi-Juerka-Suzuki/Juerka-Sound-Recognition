@@ -31,8 +31,13 @@ namespace Juerka::SoundRecognition
 			sound_data_delta(3)
 		{
 			sound_data_manager.clear_sound_data();
-			sound_data_manager.load_sound_file(move(filename));
+			sound_data_manager.load_sound_file(move(filename), data_series_size);
 			sound_data_manager.normalize_sound_data();
+		}
+
+		void reset_data_point_index(void)
+		{
+			sound_data_point_index = 0;
 		}
 
 		void generate_current(vector<double>& out)
@@ -66,11 +71,16 @@ namespace Juerka::SoundRecognition
 				copy(time_domain_sound_data.begin(), time_domain_sound_data.end(), back_inserter(time_domain_data));
 			}
 
+			for (size_t i = 0; i < time_domain_data.size() / 2; i++)
+			{
+				frequency_domain_data.emplace_back(0);
+			}
+
 			do_dft(time_domain_data, frequency_domain_data);
 
 			for (size_t i = 0; i < time_domain_data.size() / 2; i++)
 			{
-				out.emplace_back(abs(frequency_domain_data[i]) * multiplying_factor);
+				out.emplace_back(sqrt(abs(frequency_domain_data[i] * multiplying_factor)));
 			}
 
 			sound_data_point_index += sound_data_delta;
