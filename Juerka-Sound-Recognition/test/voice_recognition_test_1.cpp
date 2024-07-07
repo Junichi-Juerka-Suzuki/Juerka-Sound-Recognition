@@ -42,7 +42,7 @@ namespace Juerka::SoundRecognition::Main
 		bool is_record_weights
 	) noexcept
 	{
-		std::uint_fast32_t network_size(100);
+		std::uint_fast32_t network_size(1);
 
 		std::vector< std::array<std::vector<Juerka::CommonNet::neuron_t>, 2> > target_neuron_list(network_size);
 		std::vector< std::array<std::vector<Juerka::CommonNet::elec_t>, 2> > synaptic_current_list(network_size);

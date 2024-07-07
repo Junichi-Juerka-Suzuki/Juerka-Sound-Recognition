@@ -47,3 +47,86 @@ set_property(TARGET Juerka-Sound-Recognition-Voice-Recognition-Test-3 PROPERTY C
 
 target_link_libraries(Juerka-Sound-Recognition-Voice-Recognition-Test-3 PUBLIC Juerka-core MKL::MKL)
 
+add_executable(Juerka-Sound-Recognition-Voice-Recognition-Test-4
+	"test/voice_recognition_test_4.cpp" "CurrentGenerator/Fft.cpp"
+	"CurrentGenerator/Fft.h" "CurrentGenerator/SoundDataManager.h"
+	"CurrentGenerator/Common.h" "CurrentGenerator/SoundDataManager.cpp"
+	"CurrentGenerator/SoundCurrentGenerator.h")
+
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-4 PUBLIC "../Juerka/CommonNet")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-4 PUBLIC "../Juerka/Utility")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-4 PUBLIC "CurrentGenerator")
+
+set_property(TARGET Juerka-Sound-Recognition-Voice-Recognition-Test-4 PROPERTY CXX_STANDARD 20)
+
+target_link_libraries(Juerka-Sound-Recognition-Voice-Recognition-Test-4 PUBLIC Juerka-core MKL::MKL)
+
+add_executable(Juerka-Sound-Recognition-Voice-Recognition-Test-5
+	"test/voice_recognition_test_5.cpp" "CurrentGenerator/Fft.cpp"
+	"CurrentGenerator/Fft.h" "CurrentGenerator/SoundDataManager.h"
+	"CurrentGenerator/Common.h" "CurrentGenerator/SoundDataManager.cpp"
+	"CurrentGenerator/SoundCurrentGenerator.h")
+
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-5 PUBLIC "../Juerka/CommonNet")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-5 PUBLIC "../Juerka/Utility")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-5 PUBLIC "CurrentGenerator")
+
+set_property(TARGET Juerka-Sound-Recognition-Voice-Recognition-Test-5 PROPERTY CXX_STANDARD 20)
+
+target_link_libraries(Juerka-Sound-Recognition-Voice-Recognition-Test-5 PUBLIC Juerka-core MKL::MKL)
+
+add_executable(Juerka-Sound-Recognition-Voice-Recognition-Test-6
+	"test/voice_recognition_test_6.cpp" "CurrentGenerator/Fft.cpp"
+	"CurrentGenerator/Fft.h" "CurrentGenerator/SoundDataManager.h"
+	"CurrentGenerator/Common.h" "CurrentGenerator/SoundDataManager.cpp"
+	"CurrentGenerator/SoundCurrentGenerator.h")
+
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-6 PUBLIC "../Juerka/CommonNet")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-6 PUBLIC "../Juerka/Utility")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-6 PUBLIC "CurrentGenerator")
+
+set_property(TARGET Juerka-Sound-Recognition-Voice-Recognition-Test-6 PROPERTY CXX_STANDARD 20)
+
+target_link_libraries(Juerka-Sound-Recognition-Voice-Recognition-Test-6 PUBLIC Juerka-core MKL::MKL)
+
+add_executable(Juerka-Sound-Recognition-Voice-Recognition-Test-7
+	"test/voice_recognition_test_7.cpp" "CurrentGenerator/Fft.cpp"
+	"CurrentGenerator/Fft.h" "CurrentGenerator/SoundDataManager.h"
+	"CurrentGenerator/Common.h" "CurrentGenerator/SoundDataManager.cpp"
+	"CurrentGenerator/SoundCurrentGenerator.h")
+
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-7 PUBLIC "../Juerka/CommonNet")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-7 PUBLIC "../Juerka/Utility")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-7 PUBLIC "CurrentGenerator")
+
+set_property(TARGET Juerka-Sound-Recognition-Voice-Recognition-Test-7 PROPERTY CXX_STANDARD 20)
+
+target_link_libraries(Juerka-Sound-Recognition-Voice-Recognition-Test-7 PUBLIC Juerka-core MKL::MKL)
+
+add_executable(Juerka-Sound-Recognition-Voice-Recognition-Test-8
+	"test/voice_recognition_test_8.cpp" "CurrentGenerator/Fft.cpp"
+	"CurrentGenerator/Fft.h" "CurrentGenerator/SoundDataManager.h"
+	"CurrentGenerator/Common.h" "CurrentGenerator/SoundDataManager.cpp"
+	"CurrentGenerator/SoundCurrentGenerator.h")
+
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-8 PUBLIC "../Juerka/CommonNet")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-8 PUBLIC "../Juerka/Utility")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-8 PUBLIC "CurrentGenerator")
+
+set_property(TARGET Juerka-Sound-Recognition-Voice-Recognition-Test-8 PROPERTY CXX_STANDARD 20)
+
+target_link_libraries(Juerka-Sound-Recognition-Voice-Recognition-Test-8 PUBLIC Juerka-core MKL::MKL)
+
+add_executable(Juerka-Sound-Recognition-Voice-Recognition-Test-9
+	"test/voice_recognition_test_9.cpp" "CurrentGenerator/Fft.cpp"
+	"CurrentGenerator/Fft.h" "CurrentGenerator/SoundDataManager.h"
+	"CurrentGenerator/Common.h" "CurrentGenerator/SoundDataManager.cpp"
+	"CurrentGenerator/SoundCurrentGenerator.h")
+
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-9 PUBLIC "../Juerka/CommonNet")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-9 PUBLIC "../Juerka/Utility")
+target_include_directories(Juerka-Sound-Recognition-Voice-Recognition-Test-9 PUBLIC "CurrentGenerator")
+
+set_property(TARGET Juerka-Sound-Recognition-Voice-Recognition-Test-9 PROPERTY CXX_STANDARD 20)
+
+target_link_libraries(Juerka-Sound-Recognition-Voice-Recognition-Test-9 PUBLIC Juerka-core MKL::MKL)

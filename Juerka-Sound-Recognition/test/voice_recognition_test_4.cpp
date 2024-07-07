@@ -18,7 +18,7 @@ namespace Juerka::SoundRecognition::Main
 
 int main(void) noexcept
 {
-	bool is_run_parallel(true);
+	bool is_run_parallel(false);
 	bool is_monitor_performance(false);
 	bool is_record_weights(false);
 
@@ -57,25 +57,33 @@ namespace Juerka::SoundRecognition::Main
 
 		for (Juerka::CommonNet::step_time_t i = 0; i < Juerka::CommonNet::TIME_END; i += 1)
 		{
-			for (int j = 0; j < network_size; j += 1)
+			for (std::uint_fast32_t j = 0; j < network_size; j += 1)
 			{
 				target_neuron_list[j][Juerka::CommonNet::INPUT_SIDE].clear();
 				synaptic_current_list[j][Juerka::CommonNet::INPUT_SIDE].clear();
 			}
 
-			bool is_run_with_voice(false);
+			bool is_run_with_voice(true);
 
 			if (is_run_with_voice)
 			{
-				if ((i % 100) < 50)
+				if (0 == (i % 100))
 				{
-					sound_current_input.clear();
-					current_generator.generate_current(sound_current_input);
+					current_generator.reset_data_point_index();
+				}
 
-					for (int j = 0; j < sound_current_input.size(); j += 1)
+				if ((i < 3000) || (i >= 7000))
+				{
+					if ((i % 100) < 80)
 					{
-						target_neuron_list[0][Juerka::CommonNet::INPUT_SIDE].emplace_back(j);
-						synaptic_current_list[0][Juerka::CommonNet::INPUT_SIDE].emplace_back(sound_current_input[j]);
+						sound_current_input.clear();
+						current_generator.generate_current(sound_current_input);
+
+						for (int j = 0; j < sound_current_input.size(); j += 1)
+						{
+							target_neuron_list[0][Juerka::CommonNet::INPUT_SIDE].emplace_back(j);
+							synaptic_current_list[0][Juerka::CommonNet::INPUT_SIDE].emplace_back(sound_current_input[j]);
+						}
 					}
 				}
 			}
@@ -111,14 +119,14 @@ namespace Juerka::SoundRecognition::Main
 				}
 			}
 
-			if (i < 500)
+			if (i < 3000)
 			{
-				if ((5 <= (i % 100)) && (55 > (i % 100)))
+				if ((5 <= (i % 100)) && (85 > (i % 100)))
 				{
 					for (int j = 600; j < 800; j += 1)
 					{
 						target_neuron_list[0][Juerka::CommonNet::INPUT_SIDE].emplace_back(j);
-						synaptic_current_list[0][Juerka::CommonNet::INPUT_SIDE].emplace_back(15.0);
+						synaptic_current_list[0][Juerka::CommonNet::INPUT_SIDE].emplace_back(20.0);
 					}
 				}
 			}
