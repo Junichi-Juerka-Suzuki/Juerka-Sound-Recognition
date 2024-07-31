@@ -22,7 +22,7 @@ int main(void) noexcept
 {
 	bool is_run_parallel(true);
 	bool is_monitor_performance(false);
-	bool is_record_weights(false);
+	bool is_record_weights(true);
 
 
 	Juerka::SoundRecognition::Main::run
@@ -52,14 +52,20 @@ namespace Juerka::SoundRecognition::Main
 		const Juerka::CommonNet::step_time_t VALIDATION_TIME_DURATION{ 4000 };
 
 		//const double current_input_normalizer_table[network_size] = { 1.0 / 100, 2.75 / 20 };
-		const double current_input_normalizer_table[network_size] { 2.75/50 , 1.0/8  };
+		//const double current_input_normalizer_table[network_size] { 2.0 , 20.0 };
+		//const double current_input_normalizer_table[network_size]{ 8.0 , 22.0 };
+		//const double current_input_normalizer_table[network_size]{ 4.0 , 15.0 };
+		//const double current_input_normalizer_table[network_size]{ 2.8 , 15.0 };
+		const double current_input_normalizer_table[network_size]{ 5.8 , 15.0 };
 		//const double EXC_BASE_CURRENT{ 7.5 };
 		//const double INH_CURRENT{ -35 };
-		const double INH_CURRENT{ -5 };
-		const double INH_LABEL_CURRENT{ -5 };
-		const size_t EXC_NUM{ 800 };
-		const size_t INH_NUM{ 1600 };
-		const size_t NO_SOUND_BLOCK{ 200 };
+		const double INH_CURRENT{ -10.0 };
+		const double INH_LABEL_CURRENT{ -40.0 };
+		//const size_t EXC_NUM{ 1600 };
+		//const size_t INH_NUM{ 1600 };
+		const size_t EXC_NUM{ 400 };
+		const size_t INH_NUM{ 400 };
+		const size_t NO_SOUND_BLOCK{ 100 };
 		double current_input_normalizer{ 0.0 };
 
 		std::vector< std::array<std::vector<Juerka::CommonNet::neuron_t>, 2> > target_neuron_list(network_size);
@@ -75,10 +81,12 @@ namespace Juerka::SoundRecognition::Main
 
 		size_t exc_counter[network_size] = { 0 };
 		size_t inh_counter[network_size] = { 0 };
-		//ng.set_update_weights(false, 0, training_layer);
+		//ng.set_update_weights(true, 0, network_size);
 
 		for (Juerka::CommonNet::step_time_t i = 0; i < Juerka::CommonNet::TIME_END; i += 1)
 		{
+			ng.set_update_weights(false, 0, network_size);
+
 			for (int j = 0; j < network_size; j += 1)
 			{
 				target_neuron_list[j][Juerka::CommonNet::INPUT_SIDE].clear();
@@ -109,6 +117,8 @@ namespace Juerka::SoundRecognition::Main
 
 			if (is_training_with_sound)
 			{
+				ng.set_update_weights(true, 0, network_size);
+
 				for (int j = 0; j < network_size; j += 1)
 				{
 					for (int k = 0; k < EXC_NUM; k += 1)
@@ -116,6 +126,9 @@ namespace Juerka::SoundRecognition::Main
 						target_neuron_list[j][Juerka::CommonNet::INPUT_SIDE].emplace_back((exc_counter[j]) % Juerka::CommonNet::SerialNet::Ne);
 						size_t neuron_index{ exc_counter[j] % (sound_current_input.size() - NO_SOUND_BLOCK)};
 						synaptic_current_list[j][Juerka::CommonNet::INPUT_SIDE].emplace_back(sound_current_input[neuron_index] * current_input_normalizer);
+
+						//if (0 == j)std::cout << sound_current_input[neuron_index] * current_input_normalizer << std::endl;
+						//if (1 == j)std::cout << sound_current_input[neuron_index] * current_input_normalizer << std::endl;
 						exc_counter[j] += 1;
 					}
 				}
@@ -233,11 +246,11 @@ namespace Juerka::SoundRecognition::Main
 				counter_for_voice = counter_for_sound[0];
 				counter_for_sine = counter_for_sound[1];
 
-				if (counter_for_voice > counter_for_sine)
+				if (counter_for_voice < counter_for_sine)
 				{
 					std::cout << "voice" << std::endl;
 				}
-				else if (counter_for_voice < counter_for_sine)
+				else if (counter_for_voice > counter_for_sine)
 				{
 					std::cout << "sine" << std::endl;
 				}
@@ -357,11 +370,11 @@ namespace Juerka::SoundRecognition::Main
 		counter_for_voice = counter_for_sound[0];
 		counter_for_sine = counter_for_sound[1];
 
-		if (counter_for_voice > counter_for_sine)
+		if (counter_for_voice < counter_for_sine)
 		{
 			std::cout << "voice" << std::endl;
 		}
-		else if (counter_for_voice < counter_for_sine)
+		else if (counter_for_voice > counter_for_sine)
 		{
 			std::cout << "sine" << std::endl;
 		}
