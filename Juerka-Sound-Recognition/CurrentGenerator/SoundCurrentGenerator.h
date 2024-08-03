@@ -46,6 +46,24 @@ namespace Juerka::SoundRecognition
 			vector<double> time_domain_data;
 			vector<complex<double>> frequency_domain_data;
 
+			for (size_t i = 0; i < data_series_size; i += 1)
+			{
+				if (time_domain_data.size() >= data_series_size)
+				{
+					break;
+				}
+				time_domain_data.emplace_back(0.0);
+			}
+
+			for (size_t i = 0; i < data_series_size + 2; i += 1)
+			{
+				if (frequency_domain_data.size() >= (data_series_size + 2))
+				{
+					break;
+				}
+				frequency_domain_data.emplace_back(0.0);
+			}
+
 			size_t end_sound_data_point_index(sound_data_point_index + data_series_size);
 			size_t max_data_point(sound_data_manager.get_sound_data_length());
 
@@ -62,25 +80,31 @@ namespace Juerka::SoundRecognition
 				end_sound_data_point_index
 			);
 
-			if (typeid(sound_t) != typeid(double))
+			for (size_t i = 0; i < time_domain_data.size(); i++)
 			{
-				for_each(time_domain_sound_data.begin(), time_domain_sound_data.end(), [&time_domain_data](sound_t a) {time_domain_data.emplace_back(static_cast<double>(a)); });
-			}
-			else
-			{
-				copy(time_domain_sound_data.begin(), time_domain_sound_data.end(), back_inserter(time_domain_data));
+				time_domain_data[i] = 0.0;
 			}
 
-			for (size_t i = 0; i < time_domain_data.size() / 2; i++)
 			{
-				frequency_domain_data.emplace_back(0);
+				size_t i{ 0 };
+
+				for (auto it = time_domain_sound_data.begin(); it != time_domain_sound_data.end(); it++)
+				{
+					time_domain_data[i] = static_cast<double>(*it);
+					i += 1;
+				}
+			}
+
+			for (size_t i = 0; i < frequency_domain_data.size(); i++)
+			{
+				frequency_domain_data[i] = 0.0;
 			}
 
 			do_dft(time_domain_data, frequency_domain_data);
 
-			for (size_t i = 0; i < time_domain_data.size() / 2; i++)
+			for (size_t i = 0; i < (time_domain_data.size() / 2); i++)
 			{
-				out.emplace_back(sqrt(abs(frequency_domain_data[i] * multiplying_factor)));
+				out.emplace_back(sqrt(abs(frequency_domain_data[i]) * multiplying_factor));
 			}
 
 			sound_data_point_index += sound_data_delta;

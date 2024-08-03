@@ -16,8 +16,6 @@ namespace Juerka::SoundRecognition
         vector<complex<double>>& out
     )
     {
-        out.reserve(in.size());
-
         DFTI_DESCRIPTOR_HANDLE descriptor;
         MKL_LONG status;
 
