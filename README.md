@@ -12,4 +12,5 @@ see https://github.com/Junichi-Juerka-Suzuki/Juerka-Sound-Recognition/blob/maste
 4. copy voice.dat and sine.dat in Data Folder to the folder which contains the executable file
 5. Run the executable file
 6. (If you wish to visualize the result then) use https://github.com/Junichi-Juerka-Suzuki/Juerka-Utility-Collection to visualize spikes and networks
-
+### Example
+You can find the results like this gist(https://gist.github.com/Junichi-Juerka-Suzuki/1173e3131e6790afb2580b0f8fecfd50), sorry in Japanese.
